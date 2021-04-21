@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "ES2015",
+    "moduleResolution": "Node",
+    "lib": ["es6", "dom"],
+    "allowJs": true,
+    "outDir": "build",
+    "rootDir": "./",
+    "strict": true,
+    "types": ["node"],
+    "typeRoots" : ["./node_modules/@types"],
+  },
+  "include": [
+    "src/**/*"
+, "index.ts"  ],
+  "exclude" : [
+    "src/**/*.spec.ts"
+  ]
+}

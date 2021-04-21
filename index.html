@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Search Tree</title>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <main>
+        <div class="actions">
+            <div class="action">
+                <input name="valueType" type="radio" value="string" id="stringType">
+                <label for="stringType"> String</label>
+                <input name="valueType" type="radio" value="number" id="numberType" checked>
+                <label for="stringType"> Number</label>
+            </div>
+            <div class="action">
+                <input type="text" id="addedValue" placeholder="Enter value to add">
+                <button id="add">Add</button>
+            </div>
+            <div class="action">
+                <input type="text" id="deletedValue" placeholder="Enter value to delete">
+                <button id="delete">Delete</button>
+            </div>
+            <div class="action">
+                <input type="text" id="findedValue" placeholder="Enter value to find">
+                <button id="find">Find</button>
+            </div>
+            <div class="action">
+                <textarea name="traversedValue" id="traversedValue" cols="40" rows="15"
+                    disabled>Preorder traversal:</textarea>
+            </div>
+        </div>
+        <div class="tree" id="tree">
+        </div>
+    </main>
+    <script src="./dist/bundle.js"></script>
+</body>
+
+</html>

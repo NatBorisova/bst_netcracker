@@ -1,0 +1,41 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+textarea {
+    resize: none;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
+    align-items: initial;
+}
+
+.action {
+    margin: 10px;
+}
+
+.tree {
+    width: 660px;
+    height: 500px;
+}
+
+.node circle {
+    stroke: black;
+    stroke-width: 1px;
+}
+
+.node text {
+    font: 14px sans-serif;
+    color: black;
+}
+
+.link {
+    fill: none;
+    stroke: black;
+    stroke-width: 2px;
+}
