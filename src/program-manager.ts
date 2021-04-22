@@ -16,55 +16,66 @@ class ProgramManager {
 
         document.getElementById("add")?.addEventListener("click", () => {
 
-            this.validateInput(valueType, ADDED_VALUE.value);
+            try {
+                this.validateInput(valueType, ADDED_VALUE.value);
 
-            if (valueType === "number") {
-                BST.add(Number(ADDED_VALUE.value));
-            } else {
-                BST.add(ADDED_VALUE.value);
+                if (valueType === "number") {
+                    BST.add(Number(ADDED_VALUE.value));
+                } else {
+                    BST.add(ADDED_VALUE.value);
+                }
+
+                this.clearInputs();
+                this.updateTreeTraverse();
+
+                const treeData = BST.getTreeForDrawing();
+                drawTree(treeData);
+            } catch (error) {
+                console.error(`Failed to add value. ${error.message}.`);
             }
-
-            this.clearInputs();
-            this.updateTreeTraverse();
-
-            const treeData = BST.getTreeForDrawing();
-            drawTree(treeData);
-
         });
 
         document.getElementById("delete")?.addEventListener("click", () => {
 
-            this.validateInput(valueType, DELETED_VALUE.value);
+            try {
+                this.validateInput(valueType, DELETED_VALUE.value);
 
-            if (valueType === "number") {
-                BST.delete(Number(DELETED_VALUE.value));
-            } else {
-                BST.delete(DELETED_VALUE.value);
+                if (valueType === "number") {
+                    BST.delete(Number(DELETED_VALUE.value));
+                } else {
+                    BST.delete(DELETED_VALUE.value);
+                }
+
+                this.clearInputs();
+                this.updateTreeTraverse();
+
+                const treeData = BST.getTreeForDrawing();
+                drawTree(treeData);
+            } catch (error) {
+                console.error(`Failed to delete value. ${error.message}.`);
             }
-
-            this.clearInputs();
-            this.updateTreeTraverse();
-
-            const treeData = BST.getTreeForDrawing();
-            drawTree(treeData);
 
         });
 
         document.getElementById("find")?.addEventListener("click", () => {
 
-            this.validateInput(valueType, FINDED_VALUE.value);
+            try {
+                this.validateInput(valueType, FINDED_VALUE.value);
 
-            if (valueType === "number") {
-                BST.find(Number(FINDED_VALUE.value));
-            } else {
-                BST.find(FINDED_VALUE.value);
-            }
+                if (valueType === "number") {
+                    BST.find(Number(FINDED_VALUE.value));
+                } else {
+                    BST.find(FINDED_VALUE.value);
+                }
 
-            const treeData = BST.getTreeForDrawing();
-            if (valueType === "number") {
-                drawTree(treeData, Number(FINDED_VALUE.value));
-            } else {
-                drawTree(treeData, FINDED_VALUE.value);
+                const treeData = BST.getTreeForDrawing();
+                if (valueType === "number") {
+                    drawTree(treeData, Number(FINDED_VALUE.value));
+                } else {
+                    drawTree(treeData, FINDED_VALUE.value);
+                }
+            } catch (error) {
+                console.error(`Failed to find value. ${error.message}.`);
             }
 
         });
