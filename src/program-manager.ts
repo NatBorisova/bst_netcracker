@@ -10,20 +10,21 @@ const BST = new BinarySearchTree();
 
 class ProgramManager {
 
-    public init(): void {
+    valueType: string;
 
-        let valueType = "number";
+    constructor() {
+        this.valueType = "number";
+    }
+
+    public init(): void {
 
         document.getElementById("add")?.addEventListener("click", () => {
 
             try {
-                this.validateInput(valueType, ADDED_VALUE.value);
+                let value = this.getValue(ADDED_VALUE.value);
+                this.validateInput(ADDED_VALUE.value, Boolean(BST.find(value)), true);
 
-                if (valueType === "number") {
-                    BST.add(Number(ADDED_VALUE.value));
-                } else {
-                    BST.add(ADDED_VALUE.value);
-                }
+                BST.add(value);
 
                 this.clearInputs();
                 this.updateTreeTraverse();
@@ -38,13 +39,10 @@ class ProgramManager {
         document.getElementById("delete")?.addEventListener("click", () => {
 
             try {
-                this.validateInput(valueType, DELETED_VALUE.value);
+                let value = this.getValue(DELETED_VALUE.value);
+                this.validateInput(DELETED_VALUE.value, Boolean(BST.find(value)));
 
-                if (valueType === "number") {
-                    BST.delete(Number(DELETED_VALUE.value));
-                } else {
-                    BST.delete(DELETED_VALUE.value);
-                }
+                BST.delete(value);
 
                 this.clearInputs();
                 this.updateTreeTraverse();
@@ -60,20 +58,14 @@ class ProgramManager {
         document.getElementById("find")?.addEventListener("click", () => {
 
             try {
-                this.validateInput(valueType, FINDED_VALUE.value);
+                let value = this.getValue(FINDED_VALUE.value);
+                this.validateInput(FINDED_VALUE.value, Boolean(BST.find(value)));
 
-                if (valueType === "number") {
-                    BST.find(Number(FINDED_VALUE.value));
-                } else {
-                    BST.find(FINDED_VALUE.value);
-                }
+                BST.find(value);
 
                 const treeData = BST.getTreeForDrawing();
-                if (valueType === "number") {
-                    drawTree(treeData, Number(FINDED_VALUE.value));
-                } else {
-                    drawTree(treeData, FINDED_VALUE.value);
-                }
+                drawTree(treeData, value);
+
             } catch (error) {
                 console.error(`Failed to find value. ${error.message}.`);
             }
@@ -87,7 +79,7 @@ class ProgramManager {
             }
             BST.clear();
 
-            valueType = (<HTMLInputElement>e.target).value;
+            this.valueType = (<HTMLInputElement>e.target).value;
         }));
     }
 
@@ -102,16 +94,30 @@ class ProgramManager {
         TRAVERSED_VALUE.innerHTML = `Preorder traversal: ${BST.traverse().join(",")}`;
     }
 
-    private validateInput(valueType: string, value: string): void {
+    private validateInput(value: string, isValueFound: boolean, isAdding: boolean = false): void {
 
         if (value === "") {
             throw new Error("Value is empty");
         }
 
-        if (valueType === "number") {
+        if (isAdding && isValueFound) {
+            throw new Error("Value is already presented");
+        } else if (!isAdding && !isValueFound) {
+            throw new Error("Value is not found");
+        }
+
+        if (this.valueType === "number") {
             if (!Number(value) && Number(value) !== 0) {
                 throw new Error("Input value is not a number");
             }
+        }
+    }
+
+    private getValue(value: string): string | number {
+        if (this.valueType === "number") {
+            return Number(value);
+        } else {
+            return value;
         }
     }
 

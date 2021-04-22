@@ -19,10 +19,6 @@ class BinarySearchTree<T> implements ITree<T> {
 
     public add(value: T): void {
 
-        if (this.find(value)) {
-            throw new Error("Value is already presented");
-        }
-
         if (!this._root) {
             this._root = this.createNewNode(value);
         } else {
