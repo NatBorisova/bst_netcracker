@@ -32,6 +32,7 @@ class ProgramManager {
                 const treeData = BST.getTreeForDrawing();
                 drawTree(treeData);
             } catch (error) {
+                this.clearInputs();
                 console.error(`Failed to add value. ${error.message}.`);
             }
         });
@@ -50,6 +51,7 @@ class ProgramManager {
                 const treeData = BST.getTreeForDrawing();
                 drawTree(treeData);
             } catch (error) {
+                this.clearInputs();
                 console.error(`Failed to delete value. ${error.message}.`);
             }
 
@@ -67,6 +69,7 @@ class ProgramManager {
                 drawTree(treeData, value);
 
             } catch (error) {
+                this.clearInputs();
                 console.error(`Failed to find value. ${error.message}.`);
             }
 
@@ -101,8 +104,10 @@ class ProgramManager {
         }
 
         if (isAdding && isValueFound) {
+            alert("Value is already presented");
             throw new Error("Value is already presented");
         } else if (!isAdding && !isValueFound) {
+            alert("Value is not found");
             throw new Error("Value is not found");
         }
 
